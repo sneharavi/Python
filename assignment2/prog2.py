@@ -8,7 +8,7 @@ Date Due: February 28, 2019
 
 Purpose: This program takes two file names as arguments and
 reads the information from 1st file compute a dictionary of
-word frequency and write them to the the second file provided.
+word frequency and writes them to the the second file provided.
 """
 
 import sys
@@ -27,7 +27,7 @@ Parameters:
     None.
 
 Returns:
-float: Returns a tuple of both the input file and output file.
+    Returns a tuple of both the input file and output file.
 """
 def checkArgs():
     invalidUsage = False
@@ -35,10 +35,7 @@ def checkArgs():
     if len(sys.argv) != 3:
         invalidUsage = True
     else:
-        # verify if the file exists or if the given path is a file
-        if not os.path.isfile(sys.argv[1]):
-            invalidUsage = True
-        elif (sys.argv[1].strip() == '') or (sys.argv[2].strip() == ''):
+        if (sys.argv[1].strip() == '') or (sys.argv[2].strip() == ''):
             invalidUsage = True
     # if the arguments failed the test. print error message and exit execution
     if invalidUsage:
@@ -61,13 +58,14 @@ Returns:
     messgae and exits.
 """
 def openFiles(files):
+    # Initialize the file objects
     inputFile = None
     outputFile = None
     # Check if the file to read exists
     if not os.path.isfile(files[0]):
         # Error out if it doesn't exist
         sys.stderr.write("Can't Open File: %s\n\n" % files[0])
-        exit(1)
+        sys.exit(1)
     # Try to open it in read mode, and handle IOError due to memory or due to file permissions.
     try:
         inputFile = open(files[0], "r")
@@ -103,11 +101,10 @@ def closeFiles(fobjects):
                 fileObject.close()
             except IOError:
                 sys.stderr.write("Can't close the file %s" % fileObject.name)
-            finally:
-                exit(1)
+                sys.exit(1)
         else:
             sys.stderr.write("Cannot close file.")
-            exit(1)
+            sys.exit(1)
     return
 
 """
@@ -153,18 +150,27 @@ Returns:
     Returns a populated dictionary of words and their frequency.
 """
 def createDictionary(words):
+    #Initialize the dictionary to save to and the temporary list.
     alphabeticWords = list()
     freqDictionary = dict()
-    regexString = '^[^A-Z0-9]+|[^A-Z0-9]+$'
+    # Regex to look for all non-alphanumeric characters at the end and start of the string.
+    regexString = '^[^a-zA-Z]+|[^a-zA-Z]+$'
+    # Regex to look for non-alphabetic characters inside the string.
     regexToSplitWord = re.compile(r'[\W0-9]', re.MULTILINE | re.IGNORECASE | re.VERBOSE)
     for word in words:
+        # Replace all non-alphanumeric values with empty string.
         alphabeticWord = re.sub(regexString, '', word, flags=re.IGNORECASE | re.MULTILINE).strip()
+        # if the stripped and cleansed word is not empty then we can process further.
         if alphabeticWord:
+            # Split all words containing numbers in the middle and save only 1st half of it.
             cleanedWord = regexToSplitWord.split(alphabeticWord)[0].strip().lower()
+            # if the word is not empty proceed further and save it.
             if cleanedWord:
                 alphabeticWords.append(cleanedWord)
+    # obtain the frequency of words from the list and save it as dictionary.
     for items in alphabeticWords:
         freqDictionary[items] = alphabeticWords.count(items)
+    # Sort the dictionary and save it.
     return {word:alphabeticWords.count(word) for word in sorted(freqDictionary.keys())}
 
 """
@@ -179,41 +185,51 @@ Parameters:
     None.
 
 Returns:
-    Returns None.
+    Returns 0.
 """
 def printDictionary():
-    """printDictionary() computes frequency Dictionary from the given file."""
-    filesToScan = checkArgs()
     frequencyDictionary = dict()
+    filesToScan = checkArgs()
     openFileObjects = openFiles(filesToScan)
     writeFileObject = openFileObjects[1]
     words = createList(openFileObjects[0])
     frequencyDictionary = createDictionary(words)
+    # Initialize column value.
     column = 1
+    # Try to write the computed word-frequency dictionary to file in a formatted way.
     try:
         writeFileObject.write("Output Values for Data: {0:s}\n".format(os.path.abspath(filesToScan[0])))
         writeFileObject.write("---------------------------------------------------------\n")
         writeFileObject.write("size = {0:d}\n\n".format(len(frequencyDictionary)))
         for word in frequencyDictionary:
+            # Format and write the word-frequency combination to file.
             writeFileObject.write("{0:16s}:{1:3d}\t".format(word, frequencyDictionary[word]))
+            #Check if we have written in the 3rd column.
             if column % 3 == 0:
+                # if we have then add a new line to file and reset the value for the next line to be written.
                 writeFileObject.write("\n")
                 column = 1
             else:
+                # if not then increment by 1 and check if we have reached the end of dictionary.
                 column += 1
+                # if we have reached the end of dictionary write a new line.
                 if word == list(frequencyDictionary.keys())[-1]:
                     writeFileObject.write("\n")
          # Write new line at end of file.
         if frequencyDictionary:
             writeFileObject.write("\n")
+        # close all file objects.
         closeFiles(openFileObjects)
     except IOError:
+        # In case any error occurs handle it.
         sys.stderr.write("Failed to write word-frequency dictionary to file: "+ writeFileObject.name)
-    return
+        closeFiles(openFileObjects)
+        sys.exit(1)
+    return 0
 
 def main():
     """Main function"""
-    printDictionary()
+    return printDictionary()
 
 if __name__ == '__main__':
     main()
