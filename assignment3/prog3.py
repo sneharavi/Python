@@ -21,34 +21,34 @@ def printBoard(board):
       for columnCount in range(0, len(board[rowCount])):
          print("|      ", end='')
       print("|")
-   for columnCount in range(0, len(board[rowCount])):
+   for columnCount in range(0, len(board[0])):
       print("-"*7, end='')
    print("")
    return
 
 def isSafe(board, row, col): 
-# Check this row on left side
-   for i in range(col):
-      if board[row][col] == 1:
+   # Check  for same column
+   for i in range(len(board[0])):
+      if board[i][col]:
          return False
-
-# Check upper diagonal on left side
-   for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-      if board[i][j] == 1:
+   # Check for the same row
+   for j in range(len(board[0])):
+      if board[row][j]:
          return False
-
-# Check lower diagonal on left side
-   for i, j in zip(range(row, len(board[0]), 1), range(col, -1, -1)):
-      if board[i][j] == 1:
-         return False
-
+ # Check upper diagonal on left side
+   for i in range(len(board[0])):
+      for j in range(len(board[0])):
+         if abs(row-i) == abs(col-j):
+            if row != i and col != j:
+               if board[i][j]:
+                  return False
    return True
  
 def solveNQUtil(board,row):
    if row >= len(board[0]):
       return True
    for i in range(len(board[0])):
-      col = randint(0, len(board[0]))
+      col = randint(0, len(board[0])-1)
       if isSafe(board, row, col):
          board[row][col] = True
          if solveNQUtil(board, row+1):
@@ -60,19 +60,19 @@ def solveNQUtil(board,row):
 def solveNQueens(N):
    boardData = InitBoard(N)
    if solveNQUtil(boardData, 0):
+      printBoard(boardData)
+   else:
       print("Solution does not exist")
-      return False
-   printBoard(boardData)
-   return True
+   return
 
 def InitBoard(N):
    seed(a=None, version=2)
-   boardArray = [[0 for col in range(N)] for row in range(N)]
+   boardArray = [[False for col in range(N)] for row in range(N)]
    return boardArray
 
 def driver():
    for N  in range(1, 9):
-      print("Board size = %d" %  N)
+      print("\nBoard size = %d" %  N)
       solveNQueens(N)
 
 def main():
