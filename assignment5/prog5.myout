@@ -1,0 +1,147 @@
+
+Rectangle:
+r1: length = 7.50 : width = 2.50
+area = 18.75
+perimeter = 20.00
+
+r2: length = 0.00 : width = 0.00
+area = 0.00
+perimeter = 0.00
+
+r2: length = 7.50 : width = 2.50
+area = 18.75
+perimeter = 20.00
+
+================================================== 
+
+Circle:
+c1: radius = 2.50
+area = 19.63
+perimeter = 15.71
+
+c2: radius = 5.00
+area = 78.54
+perimeter = 31.42
+
+c1: radius = 7.50
+area = 176.71
+perimeter = 47.12
+
+================================================== 
+
+Triangle:
+t1: a = 5.10 : b = 12.20 : c = 13.30
+area = 31.11
+perimeter = 30.60
+
+t1: a = 10.20 : b = 24.40 : c = 26.60
+area = 124.42
+perimeter = 61.20
+
+================================================== 
+
+Square:
+s1: length = 2.50
+area = 6.25
+perimeter = 10.00
+
+s1: length = 5.00
+area = 25.00
+perimeter = 20.00
+
+================================================== 
+
+Right Triangle:
+rt1: length = 5.00 : height = 12.00
+area = 30.00
+perimeter = 30.00
+
+rt1: length = 10.00 : height = 24.00
+area = 120.00
+perimeter = 60.00
+
+================================================== 
+
+Equilateral Triangle:
+et1: length = 5.00
+area = 10.83
+perimeter = 15.00
+
+et1: length = 10.00
+area = 43.30
+perimeter = 30.00
+
+================================================== 
+
+Box:
+b1: length = 3.00 : width = 4.00 : height = 5.00
+area = 94.00
+volume = 60.00
+
+b1: length = 6.00 : width = 8.00 : height = 10.00
+area = 376.00
+volume = 480.00
+
+================================================== 
+
+Cube:
+cu1: length = 2.50
+area = 37.50
+volume = 15.62
+
+cu1: length = 5.00
+area = 150.00
+volume = 125.00
+
+================================================== 
+
+Cylinder:
+cy1: radius = 2.50 : height = 5.00
+area = 117.81
+volume = 98.17
+
+cy1: radius = 5.00 : height = 10.00
+area = 471.24
+volume = 785.40
+
+================================================== 
+
+Cone:
+co1: radius = 2.50 : height = 5.00
+area = 63.54
+volume = 32.72
+
+co2: radius = 3.75 : height = 4.25
+area = 110.95
+volume = 62.59
+
+co2: radius = 6.25 : height = 9.25
+area = 341.91
+volume = 378.38
+
+================================================== 
+
+Sphere:
+sp1: radius = 2.50
+area = 78.54
+volume = 65.45
+
+cp1: radius = 5.00
+area = 314.16
+volume = 523.60
+
+================================================== 
+
+Tetrahedron:
+te1: length = 5.00
+area = 43.30
+volume = 14.73
+
+te2: length = 0.00
+area = 0.00
+volume = 0.00
+
+te2: length = 5.00
+area = 43.30
+volume = 14.73
+
