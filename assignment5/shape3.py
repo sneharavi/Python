@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
+"""
+CSCI 503 - Assignment 5 - Spring 2019
 
+Author: Sneha Ravi Chandran
+Z-ID: z1856678
+Date Due: May 02, 2019
+
+Purpose: This API implements various 3D objects
+and provides for means  to determine their area, 
+volume and by extension allow for changes.
+"""
 from shape2 import *
-from math import pi
 
 class Box(Rectangle):
    def __init__(self, length=0, width=0, height=0):
@@ -15,8 +24,7 @@ class Box(Rectangle):
    def __iadd__(self,other):
       return Box(self.length+other.length, self.width+other.width, self.height+self.height)
    def __str__(self):
-      return "length = %0.2f : width = %0.2f : height = %0.2f" % (self.length, self.width,self.height)
-
+      return "length = %0.2f : width = %0.2f : height = %0.2f" % (self.length, self.width, self.height)
 
 class Cube(Square):
    def __init__(self, length=0):
@@ -43,7 +51,7 @@ class Cylinder(Circle):
 
 class Cone(Circle):
    def __init__(self, radius=0, height=0):
-      Circle.__init__(self, radius)
+      self.radius = radius
       self.height = height
    def area(self):
       return Circle.area(self) + 0.5*Circle.perimeter(self)*((self.radius**2)+(self.height**2))**(0.5)
@@ -56,7 +64,7 @@ class Cone(Circle):
 
 class Sphere(Circle):
    def __init__(self, radius=0):
-      Circle.__init__(self, radius)
+      self.radius = radius
    def area(self):
       return 4*Circle.area(self)
    def volume(self):
