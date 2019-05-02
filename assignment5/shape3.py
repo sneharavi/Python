@@ -12,6 +12,16 @@ volume and by extension allow for changes.
 """
 from shape2 import *
 
+"""
+   Class Name:
+      class Box(Rectangle)
+
+   Description:
+      A class representing the 3-D geometric shape Box
+      and inheriting from the class Rectangle. The class
+      contains the attribute length ,width and height, with
+      functions to determine, volume and surface area.
+"""
 class Box(Rectangle):
    def __init__(self, length=0, width=0, height=0):
       self.length = length
@@ -26,6 +36,16 @@ class Box(Rectangle):
    def __str__(self):
       return "length = %0.2f : width = %0.2f : height = %0.2f" % (self.length, self.width, self.height)
 
+"""
+   Class Name:
+      class Cube(Square)
+
+   Description:
+      A class representing the 3-D geometric shape Cube
+      and inheriting from the class Square. The class
+      contains the attribute length of the side, with
+      functions to determine, volume and surface area.
+"""
 class Cube(Square):
    def __init__(self, length=0):
       Square.__init__(self, length)
@@ -36,6 +56,16 @@ class Cube(Square):
    def __iadd__(self, other):
       return Cube(self.length+other.length)
 
+"""
+   Class Name:
+      class Cylinder(Circle)
+
+   Description:
+      A class representing the 3-D geometric shape Cylinder
+      and inheriting from the class Circle. The class
+      contains the attribute base radius and height, with
+      functions to determine, volume and surface area.
+"""
 class Cylinder(Circle):
    def __init__(self, radius=0, height=0):
       Circle.__init__(self, radius)
@@ -49,6 +79,16 @@ class Cylinder(Circle):
    def __str__(self):
       return "radius = %0.2f : height = %0.2f" % (self.radius, self.height)
 
+"""
+   Class Name:
+      class Cone(Circle)
+
+   Description:
+      A class representing the 3-D geometric shape Cone
+      and inheriting from the class Circle. The class
+      contains the attribute base radius and height, with
+      functions to determine, volume and surface area.
+"""
 class Cone(Circle):
    def __init__(self, radius=0, height=0):
       self.radius = radius
@@ -62,6 +102,16 @@ class Cone(Circle):
    def __str__(self):
       return "radius = %0.2f : height = %0.2f" % (self.radius, self.height)
 
+"""
+   Class Name:
+      class Sphere(Circle)
+
+   Description:
+      A class representing the 3-D geometric shape Sphere
+      and inheriting from the class Circle. The class
+      contains the attribute base radius, with
+      functions to determine, volume and surface area.
+"""
 class Sphere(Circle):
    def __init__(self, radius=0):
       self.radius = radius
@@ -72,6 +122,16 @@ class Sphere(Circle):
    def __iadd__(self, other):
       return Sphere(self.radius + other.radius)
 
+"""
+   Class Name:
+      class Tetrahedron(equTriangle)
+
+   Description:
+      A class representing the 3-D geometric shape Tetrahedron
+      and inheriting from the class equTriangle. The class
+      contains the attribute side of the Tetrahedron, with
+      functions to determine, volume and surface area.
+"""
 class Tetrahedron(equTriangle):
    def __init__(self, a=0):
       equTriangle.__init__(self, a)
