@@ -133,6 +133,9 @@ class Sphere(Circle):
       functions to determine, volume and surface area.
 """
 class Tetrahedron(equTriangle):
+   """
+      
+   """
    def __init__(self, a=0):
       equTriangle.__init__(self, a)
    def area(self):
