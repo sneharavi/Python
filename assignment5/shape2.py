@@ -44,17 +44,19 @@ class Triangle(Shape):
       return "a = %0.2f : b = %0.2f : c = %0.2f" % (self.a, self.b, self.c)
 
 class Square(Rectangle):
-   def __init__(self, side):
-      self.length = side
-      self.width = side
+   def __init__(self, length):
+      self.length = length
+      self.width = length
    def __iadd__(self, other):
-      return Square(self.width+other.width)
+      return Square(self.length+other.length)
    def __str__(self):
       return "length = %0.2f" % self.length
 
 class rightTriangle(Triangle):
    def __init__(self, a, b):
-      Triangle.__init__(self, a, b, ((a**2) + (b**2))**(0.5))
+      self.a = a
+      self.b = b
+      self.c = ((a**2) + (b**2))**(0.5)
    def __iadd__(self, other):
       return rightTriangle(self.a+other.a, self.b+other.b)
    def __str__(self):
@@ -67,4 +69,3 @@ class equTriangle(Triangle):
       return "length = %0.2f" % (self.a)
    def __iadd__(self, other):
       return equTriangle(self.a + other.a)
-      

@@ -4,7 +4,7 @@ from shape2 import *
 from math import pi
 
 class Box(Rectangle):
-   def __init__(self, length, width, height):
+   def __init__(self, length=0, width=0, height=0):
       self.length = length
       self.width = width
       self.height = height
@@ -19,7 +19,7 @@ class Box(Rectangle):
 
 
 class Cube(Square):
-   def __init__(self, length):
+   def __init__(self, length=0):
       Square.__init__(self, length)
    def area(self):
       return 6 * Square.area(self)
@@ -29,7 +29,7 @@ class Cube(Square):
       return Cube(self.length+other.length)
 
 class Cylinder(Circle):
-   def __init__(self, radius, height):
+   def __init__(self, radius=0, height=0):
       Circle.__init__(self, radius)
       self.height = height
    def area(self):
@@ -42,7 +42,7 @@ class Cylinder(Circle):
       return "radius = %0.2f : height = %0.2f" % (self.radius, self.height)
 
 class Cone(Circle):
-   def __init__(self, radius, height):
+   def __init__(self, radius=0, height=0):
       Circle.__init__(self, radius)
       self.height = height
    def area(self):
@@ -55,7 +55,7 @@ class Cone(Circle):
       return "radius = %0.2f : height = %0.2f" % (self.radius, self.height)
 
 class Sphere(Circle):
-   def __init__(self, radius):
+   def __init__(self, radius=0):
       Circle.__init__(self, radius)
    def area(self):
       return 4*Circle.area(self)
@@ -63,7 +63,6 @@ class Sphere(Circle):
       return (4/3) * Circle.area(self) * self.radius
    def __iadd__(self, other):
       return Sphere(self.radius + other.radius)
-
 
 class Tetrahedron(equTriangle):
    def __init__(self, a=0):
@@ -74,4 +73,3 @@ class Tetrahedron(equTriangle):
       return (1/3) * equTriangle.area(self) * ((2/3)**0.5)*self.a
    def __iadd__(self, other):
       return Tetrahedron(self.a + other.a)
-   
