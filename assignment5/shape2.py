@@ -90,11 +90,11 @@ class Rectangle(Shape):
       with the length  and width of current instance and the 
       argument added together.
    Parameters:
-      other - instance of the class Square to be added
+      other - instance of the class Rectangle to be added
       together.
 
    Returns:
-      Returns an instance of the class Square with the length
+      Returns an instance of the class Rectangle with the length
       of side of both the intstance itself and the argument
       supplied added together.
    """
@@ -111,7 +111,7 @@ class Rectangle(Shape):
       None.
 
    Returns:
-      Returns a string containing the length of the side of the Square's
+      Returns a string containing the length and width of the Rectangle's
       instance for which it exists.
    """
    def __str__(self):
@@ -246,7 +246,7 @@ class Triangle(Shape):
    Returns:
       None
    """
-   def __init__(self, a, b, c):
+   def __init__(self, a=0, b=0, c=0):
       # Assign the argument to individual sides of the triangle.
       self.a = a
       self.b = b
@@ -351,11 +351,10 @@ class Square(Rectangle):
    Returns:
       None
    """
-   def __init__(self, length):
+   def __init__(self, length=0):
       # Both the width and the length are of the same value in the square.
       # A square is a Rectangle of equal length of its sides.
-      self.length = length
-      self.width = length
+      Rectangle.__init__(self, length, length)
    """
    Function Name:
       __iadd__()
@@ -421,7 +420,7 @@ class rightTriangle(Triangle):
    Returns:
       None
    """
-   def __init__(self, a, b):
+   def __init__(self, a=0, b=0):
       self.a = a
       self.b = b
       # A one line version of pythogras formula to compute the longest side of a
@@ -491,7 +490,7 @@ class equTriangle(Triangle):
    Returns:
       None
    """
-   def __init__(self, a):
+   def __init__(self, a=0):
       # In equilateral triangle all the three sides are equal.
       Triangle.__init__(self, a, a, a)
    """
